@@ -34,3 +34,7 @@ app.listen(port, function(error) {
     console.info("==> 🌎  Listening on port %s. Open up http://localhost:%s/ in your browser.", port, port)
   }
 })
+
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
