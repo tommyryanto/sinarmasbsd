@@ -1,29 +1,26 @@
-var webpack = require('webpack')
-var webpackDevMiddleware = require('webpack-dev-middleware')
-var webpackHotMiddleware = require('webpack-hot-middleware')
-var config = require('./webpack.config')
-var serveStatic = require('serve-static');
-var sendMail = require('./src/api/sendmail');
-var bodyParser = require('body-parser');
-var app = new (require('express'))()
+let express = require('express'),
+    path = require('path');
+var app = express();
+let server = require('http').Server(app);
 
-var port = process.env.WEBPACK_PORT || 3000
+app.use(express.static(path.join(__dirname)));
 
-var compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
-app.use(webpackHotMiddleware(compiler))
+app.get('/', function(req, res, next){
+    res.sendStatus(200);
+});
 
-// parse application/json
-app.use(bodyParser.json());
+app.get('/blog.html', function(req, res,next){
+    res.sendFile(path.join(__dirname+"/blog.html"));
+});
 
-    // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.post('/contact', function(req, res, next){
 
+});
+server.listen('8000', function() {
+    console.log("App is running on port 8000");
+});
 
-app.get('*', function(req, res) {
-  res.sendFile(__dirname + '/index.html')
-})
-
-
-
-app.listen(process.env.PORT || 5000)
+const port = process.env.PORT || 8000;
+server.listen(port, () => {
+    console.log("App is running on port " + port);
+});
