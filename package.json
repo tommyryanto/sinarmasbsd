@@ -31,7 +31,8 @@
         "jquery": "3.3.1",
         "jquery.easing": "^1.4.1",
         "magnific-popup": "^1.1.0",
-        "scrollreveal": "4.0.1"
+        "scrollreveal": "4.0.1",
+        "server": "^1.0.18"
     },
     "devDependencies": {
         "browser-sync": "2.24.7",
@@ -44,6 +45,6 @@
         "gulp-uglify": "3.0.1"
     },
     "scripts": {
-    "start": "node your-script.js"
-}
+        "start": "node your-script.js"
+    }
 }
